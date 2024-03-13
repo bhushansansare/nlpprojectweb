@@ -40,7 +40,8 @@ def display_contributors():
                 st.markdown(f'<a href="https://github.com/{username}" target="_blank"><img src="{user_info["avatar_url"]}" width="50"></a>', unsafe_allow_html=True)
             # Display name and username in the second column
             with col2:
-                st.write(f"**{user_info['name']}**  @{user_info['login']}")
+                st.write(f"**{user_info['name']}**")
+                st.write(f"@{user_info['login']}")
         else:
             st.sidebar.write(f"No info available for {username}")
 
