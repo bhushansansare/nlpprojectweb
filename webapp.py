@@ -34,28 +34,31 @@ def inject_custom_css():
         </style>
     """, unsafe_allow_html=True)
 
-
-# Function to display GitHub contributors
+# Function to display contributors
 def display_contributors():
     contributors = [
-        "kapnishi", "VedantJoshi01", "atharva-mirkar", "bhushansansare"
+        "kapnishi", "VedantJoshi01"
     ]
-
+    
+    # Inject custom CSS
     inject_custom_css()
     
     st.sidebar.title("Contributors")
+    
+    # Container to hold contributors
+    contributors_container = st.sidebar.container()
+    
     for username in contributors:
         user_info = fetch_github_info(username)
         if user_info:
             # Create columns layout
-            col1, col2 = st.sidebar.columns([1, 4])
+            col1, col2 = contributors_container.columns([1, 4])
             # Anchor tag for redirection to GitHub profile
             with col1:
                 st.markdown(f'<a href="https://github.com/{username}" target="_blank"><img src="{user_info["avatar_url"]}" width="50"></a>', unsafe_allow_html=True)
             # Display name and username in the second column
             with col2:
-                st.write(f"**{user_info['name']}**")
-                st.write(f"@{user_info['login']}")
+                st.write(f"**{user_info['name']}** @{user_info['login']}")
         else:
             st.sidebar.write(f"No info available for {username}")
 
