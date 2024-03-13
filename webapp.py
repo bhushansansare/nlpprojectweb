@@ -24,35 +24,17 @@ def fetch_github_info(username):
     else:
         return None
 
-# Function to inject custom CSS to reduce spacing between contributors
-def inject_custom_css():
-    st.markdown("""
-        <style>
-            .contributors-container {
-                margin-bottom: 10px !important;
-            }
-        </style>
-    """, unsafe_allow_html=True)
-
-# Function to display contributors
+# Function to display GitHub contributors
 def display_contributors():
     contributors = [
         "kapnishi", "VedantJoshi01"
     ]
-    
-    # Inject custom CSS
-    inject_custom_css()
-    
     st.sidebar.title("Contributors")
-    
-    # Container to hold contributors
-    contributors_container = st.sidebar.container()
-    
     for username in contributors:
         user_info = fetch_github_info(username)
         if user_info:
             # Create columns layout
-            col1, col2 = contributors_container.columns([1, 4])
+            col1, col2 = st.sidebar.columns([1, 4])
             # Anchor tag for redirection to GitHub profile
             with col1:
                 st.markdown(f'<a href="https://github.com/{username}" target="_blank"><img src="{user_info["avatar_url"]}" width="50"></a>', unsafe_allow_html=True)
