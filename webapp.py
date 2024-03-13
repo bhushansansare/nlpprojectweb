@@ -24,11 +24,25 @@ def fetch_github_info(username):
     else:
         return None
 
+# Function to inject custom CSS to reduce spacing between contributors
+def inject_custom_css():
+    st.markdown("""
+        <style>
+            .contributors-container {
+                margin-bottom: 10px !important;
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
+
 # Function to display GitHub contributors
 def display_contributors():
     contributors = [
         "kapnishi", "VedantJoshi01", "atharva-mirkar", "bhushansansare"
     ]
+
+    inject_custom_css()
+    
     st.sidebar.title("Contributors")
     for username in contributors:
         user_info = fetch_github_info(username)
