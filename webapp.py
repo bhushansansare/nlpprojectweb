@@ -88,6 +88,9 @@ def determine_labels(preprocessed_df):
 st.sidebar.title("Upload Data")
 uploaded_file = st.sidebar.file_uploader("Upload CSV or XLSX")
 
+# Display contributors in the sidebar
+display_contributors()
+
 # Main screen
 st.title("NLP Auto Labelling Project")
 
@@ -108,6 +111,3 @@ if uploaded_file is not None:
         
         # Download button for processed data
         st.download_button(label='Download', data=download_csv(processed_df), file_name='output.csv', mime='text/csv')
-
-# Display contributors in the sidebar
-display_contributors()
