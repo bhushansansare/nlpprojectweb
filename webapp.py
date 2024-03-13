@@ -42,8 +42,9 @@ def display_contributors():
             with col2:
                 st.write(f"""
                 **{user_info['name']}**
+                <br>
                 @{user_info['login']}
-                """)
+                """, unsafe_allow_html=True)
         else:
             st.sidebar.write(f"No info available for {username}")
 
